@@ -1,0 +1,53 @@
+{
+  "name": "@apirelio/core",
+  "version": "0.1.0",
+  "description": "Fail-safe asynchronous ingestion core for Apirelio Node.js SDKs.",
+  "keywords": ["apirelio", "api", "analytics", "observability", "telemetry"],
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/pryznar/apirelio-node-core.git" },
+  "homepage": "https://apirelio.com/docs",
+  "bugs": { "url": "https://github.com/pryznar/apirelio-node-core/issues" },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "prepare": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.28.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "overrides": {
+    "tsup": {
+      "esbuild": "^0.28.1"
+    }
+  }
+}
