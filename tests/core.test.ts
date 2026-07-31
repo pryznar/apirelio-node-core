@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { ApirelioClient, createEvent, normalizeRoute, sanitizeMetadata } from '../src/index.js'
+import { ApirelioClient, createEvent, matchesRoutePattern, normalizeRoute, sanitizeMetadata, shouldCaptureRoute } from '../src/index.js'
 import type { ApirelioEvent, EventTransport } from '../src/index.js'
 
 class RecordingTransport implements EventTransport {
@@ -36,6 +36,22 @@ describe('@apirelio/core', () => {
 
   it('normalizes concrete identifiers without retaining query strings', () => {
     expect(normalizeRoute('/users/42/orders/01ARZ3NDEKTSV4RRFFQ69G5FAV?email=x')).toBe('/users/{id}/orders/{id}')
+  })
+
+  it('filters routes by exact paths and bounded prefix patterns', () => {
+    expect(matchesRoutePattern('/api/orders/42', '/api/**')).toBe(true)
+    expect(matchesRoutePattern('/api', '/api/**')).toBe(true)
+    expect(matchesRoutePattern('/apix/orders', '/api/**')).toBe(false)
+    expect(shouldCaptureRoute('/api/orders/42', {
+      includeRoutes: ['/api/**'],
+      excludeRoutes: ['/api/internal/**'],
+    })).toBe(true)
+    expect(shouldCaptureRoute('/api/internal/jobs', {
+      includeRoutes: ['/api/**'],
+      excludeRoutes: ['/api/internal/**'],
+    })).toBe(false)
+    expect(shouldCaptureRoute('/health', { includeRoutes: ['/api/**'] })).toBe(false)
+    expect(shouldCaptureRoute('/health', { excludeRoutes: ['/health'] })).toBe(false)
   })
 
   it('enforces metadata allow-list, sensitive keys and payload bounds', () => {

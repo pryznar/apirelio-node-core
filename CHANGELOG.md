@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0
+
+- Add shared exact and `/**` prefix route matching.
+- Add deterministic include/exclude filtering for framework adapters.
+
 ## 0.1.0
 
 - Initial TypeScript event contract, privacy sanitizer and route normalizer.

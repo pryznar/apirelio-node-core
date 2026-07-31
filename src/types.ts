@@ -1,6 +1,11 @@
 export type MetadataValue = boolean | number | string | null
 export type Metadata = Record<string, MetadataValue>
 
+export interface RouteFilterOptions {
+  includeRoutes?: readonly string[]
+  excludeRoutes?: readonly string[]
+}
+
 export type ApirelioEnvironment = 'production' | 'staging' | 'development' | 'test' | 'local'
 
 export interface ApirelioCustomer {

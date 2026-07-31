@@ -39,7 +39,7 @@ export class HttpBatchTransport implements EventTransport {
               accept: 'application/json',
               authorization: `Bearer ${this.options.apiKey}`,
               'content-type': 'application/json',
-              'user-agent': '@apirelio/core/0.1.0',
+              'user-agent': '@apirelio/core/0.2.0',
             },
             body: JSON.stringify({ events }),
             signal: AbortSignal.timeout(this.options.timeoutMs),

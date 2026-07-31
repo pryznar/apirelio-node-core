@@ -35,6 +35,12 @@ unbounded memory.
 Call `await apirelio.shutdown()` during graceful application shutdown. In serverless runtimes use
 an external durable queue or explicitly flush before the runtime freezes the process.
 
+## Route filtering
+
+Framework adapters use the shared `shouldCaptureRoute()` matcher. Patterns are either exact paths
+such as `/api/health` or bounded prefixes ending in `/**`, such as `/api/**`. Exclusions always win;
+an omitted or empty include list matches every route.
+
 ## Defaults
 
 | Option | Default |

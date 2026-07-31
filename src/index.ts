@@ -3,7 +3,7 @@ export { createEvent } from './event.js'
 export { HttpBatchTransport, IngestionError } from './http-transport.js'
 export { sanitizeMetadata } from './metadata.js'
 export { installProcessHooks } from './process-hooks.js'
-export { joinRoute, normalizeRoute } from './route.js'
+export { joinRoute, matchesRoutePattern, normalizeRoute, shouldCaptureRoute } from './route.js'
 export type { HttpBatchTransportOptions } from './http-transport.js'
 export type { ProcessHookOptions } from './process-hooks.js'
 export type {
@@ -16,4 +16,5 @@ export type {
   EventTransport,
   Metadata,
   MetadataValue,
+  RouteFilterOptions,
 } from './types.js'
