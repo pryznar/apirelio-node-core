@@ -1,5 +1,9 @@
 # Apirelio Node.js Core
 
+[Documentation](https://apirelio.com/docs/typescript) · [npm](https://www.npmjs.com/package/@apirelio/core) · [Apirelio](https://apirelio.com)
+
+> Build customer-aware Node.js API monitoring integrations with bounded asynchronous delivery and no payload capture.
+
 Fail-safe asynchronous delivery core shared by the official Express, Fastify and NestJS SDKs.
 It creates the same customer-aware event contract as the PHP SDKs without capturing bodies,
 credentials, cookies, query strings, email addresses or IP addresses.
